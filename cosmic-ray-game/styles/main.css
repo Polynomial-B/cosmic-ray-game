@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(5, 3, 53);
+  }
+  
+  .grid-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .grid {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.748);
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    height: 600px;
+    width: 600px;
+  }
+  
+  .grid div {
+    border: 1px solid rgb(47, 47, 47);
+    height: 5%;
+    width: 5%;
+    color: grey;
+  }
+  
+  .grid div.manta-ray {
+    background-image: url('../assets/manta-ray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  }
+  
+  .wall {
+    background-color: rgb(84, 97, 116);
+    border: none;
+    color:  rgb(32, 30, 30);
+  }
