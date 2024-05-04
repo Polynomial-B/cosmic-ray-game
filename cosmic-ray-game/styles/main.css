@@ -37,6 +37,13 @@
     background-size: contain;
     cursor: pointer;
   }
+
+  .grid div.planet-one {
+    background-image: url('../assets/planet-2png.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  }
   
   .wall {
     background-color: rgb(84, 97, 116);
