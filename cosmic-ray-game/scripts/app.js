@@ -23,9 +23,12 @@ function createWall() {
         cells[i].classList.add('wall')
         cells[i + (width - 1)].classList.add('wall')
     }
+    for(let i = 1; i < width; i ++) {
+        cells[i].classList.add('wall')
+    }
 
     // Create internal walls
-    let blockIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 201, 202, 203, 216, 217, 218, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
+    let blockIndex = [161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 201, 202, 203, 216, 217, 218, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
     
     blockIndex.forEach((cell) => {
         cells[cell].classList.add('wall')
@@ -79,6 +82,5 @@ const moveMantaRay = (event) => {
     }
     renderMove()
 }
-
 
 document.addEventListener('keydown', moveMantaRay)
