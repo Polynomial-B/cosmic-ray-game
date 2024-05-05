@@ -16,8 +16,9 @@ function createGrid() {
         grid.appendChild(cell)
 
 
-// ! GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------------------      
+// ! GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------      
         // cell.innerText = i
+// ! GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------         
     }
 }
 
@@ -65,19 +66,21 @@ planetOne.setAttribute('class', 'planet-one')
 
 function cyclePlanetOne() {
     planetOneIndex.forEach((element) => {
-        element += 5
-
+        cells[element].classList.add('planet-one')
     })
+    
 }
 
+cyclePlanetOne()
 
-cells[288].classList.add('planet-one')
 
+console.log(planetOneIndex);
 
 // cells[setInterval(cyclePlanetOne, 100)].classList.add('planet-one')
 
 
-// ! Obstacles -------------------------------------------------------
+
+// ! -------------------------------------------------------
 
 
 
@@ -87,6 +90,13 @@ function renderMove() {
     })
     cells[mantaIndex].classList.add('manta-ray')
 }
+
+function checkCollision() {
+    if(planetOneIndex.includes(mantaIndex)) {
+        console.log('collision');
+    }
+}
+
 
 
 
@@ -99,11 +109,12 @@ const moveMantaRay = (event) => {
         mantaIndex = mantaIndex + width;
     } else if (event.key === "d" && !cells[mantaIndex+1].classList.contains('wall')) {
         mantaIndex = mantaIndex + 1;
-    } else {
-        //console.log("pressed")
     }
     renderMove()
+    checkCollision()
 }
+
+
 
 document.addEventListener('keydown', moveMantaRay)
 
