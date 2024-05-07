@@ -8,6 +8,44 @@
     background-color: rgb(5, 3, 53);
   }
   
+  h1 {
+    color: grey;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10vh;
+    margin: 1vw;
+  }
+  
+  nav div.buttons {
+    width: 100vw;
+    display: flex;
+    color: white;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 1em;
+  }
+
+  button {
+    margin: 0.2em;
+    display: flex;
+  }
+
+  #manta-energy {
+    color: white;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-top: 1em 0;
+
+  }
+
   .grid-wrapper {
     height: 100vh;
     display: flex;
@@ -22,11 +60,10 @@
     height: 100%;
     height: 600px;
     width: 600px;
-
   }
   
   .grid div {
-    border: 1px solid rgb(47, 47, 47);
+    border: 1px solid rgb(36, 48, 126);
     height: 5%;
     width: 5%;
     color: grey;
@@ -45,8 +82,46 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
+    opacity: 0.4;
+    -webkit-transition: opacity 700ms ease-in-out;
+    -moz-transition: opacity 700ms ease-in-out;
+    transition: opacity 700ms ease-in-out;
   }
   
+  .grid div.planet-two {
+    background-image: url('../assets/planet-2.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    opacity: 0.2;
+    -webkit-transition: opacity 900ms ease-in;
+    -moz-transition: opacity 900ms ease-in;
+    transition: opacity 900ms ease-in;
+  }
+
+  .grid div.planet-three {
+    background-image: url('../assets/planet-3.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    opacity: 0.2;
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+  }
+
+
+  .grid div.asteroid {
+    background-image: url('../assets/meteor.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    opacity: 0.2;
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+  }
+
   .wall {
     background-color: rgb(12, 35, 69);
     border: none;
