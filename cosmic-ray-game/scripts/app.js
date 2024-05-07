@@ -16,9 +16,15 @@ function createGrid() {
         grid.appendChild(cell)
 
 
-// ! GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------      
-        // cell.innerText = i
-// ! GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------         
+// * GRID REFERENCE COMMENT IN/OUT ---------------------------------------------------     
+// ? ---------------------------------------------------------------------------------
+// * ---------------------------------------------------------------------------------
+// ? ---------------------------------------------------------------------------------
+        // cell.innerText = i     
+// ? ---------------------------------------------------------------------------------
+// * ---------------------------------------------------------------------------------
+// ? ---------------------------------------------------------------------------------
+
     }
 }
 
@@ -33,7 +39,7 @@ function createWall() {
     }
 
     // Create internal walls
-    let blockIndex = [161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 201, 202, 203, 216, 217, 218,  381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
+    let blockIndex = [161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
     
     blockIndex.forEach((cell) => {
         cells[cell].classList.add('wall')
@@ -65,58 +71,78 @@ renderManta()
 
 
 
-// ! Obstacles -------------------------------------------------------
+// ? Planet One Movement -------------------------------------------------------
 
 
-let planetOneIndex = [281, 284, 287, 290, 293, 296]
+let planetOneIndex = [301, 304, 307, 310, 313, 316]
 const planetOne = document.createElement('div')
-planetOne.setAttribute('class', 'planet-one')
-
-// * CODE BELOW
+// planetOne.setAttribute('class', 'planet-one')
 
 
-function movePlanets() {
+function renderPlanet(planet) {
+    planet.forEach((element) => {
+        cells[element].classList.add('planet-one')
+    })
+} 
+
+function removePlanetOne() {
     cells.forEach((cell) => {
         cell.classList.remove('planet-one')
     })
-    
-    planetOneIndex.forEach((planet, i) => {
-        planetOneIndex[i] = planet + 1
-    }
-    
-)}
-
-function renderPlanet() {
-    planetOneIndex.forEach((element) => {
-        cells[element].classList.add('planet-one')
-    })
-}    
-
-function loopPlanet() {
-    setInterval(
-        function loop() {
-            for(let i = 1; i < 3; i++) {
-                movePlanets()
-                renderPlanet()
-                console.log(planetOneIndex)
-            }
-            planetOneIndex = [281, 284, 287, 290, 293, 296]
-        }, 750)
-        
-        
 }
 
-renderPlanet()
-// console.log(planetOneIndex);
-
-// loopPlanet()
 
 
+function movePlanetOne() {
+    // ASYNC TIMING 
+    setInterval(()=>{
+
+        // REMOVE PLANETS
+        removePlanetOne()
+        
+        // UPDATE PLANET INDEX 
+
+        planetOneIndex = planetOneIndex.map((planet, i) => {
+            if(planet >= 318) {
+                return planet -= 17
+            } else {
+                return planet += 1
+            }
+            
+        })          
+        // RE-ADD PLANET WITH NEW INDEX    
+            
+        renderPlanet(planetOneIndex)
+        
+    }, 700)
+
+}
+        
+
+movePlanetOne()
+
+
+
+// ? Planet Two Movement -------------------------------------------------------
 
 
 
 
-// ! -------------------------------------------------------
+let planetTwoIndex = [241, 243, 245, 247, 249, 251, 253, 255, 257]
+const planetTwo = document.createElement('div')
+// planetOne.setAttribute('class', 'planet-two')
+
+function renderPlanetTwo() {
+    planetTwoIndex.forEach((element) => {
+        cells[element].classList.add('planet-two')
+    })
+} 
+
+renderPlanetTwo()
+
+
+
+// ! --------------------------------------------------------------------------
 
 
 // PLAYER MOVE RENDER
@@ -131,7 +157,7 @@ function checkCollision() {
     if(planetOneIndex.includes(mantaIndex)) {
         console.log('collision');
         
-    }
+    } 
 }
 
 
@@ -144,28 +170,28 @@ const moveMantaRay = (event) => {
         mantaRay.removeAttribute('id', 'manta-ray-down')
         mantaRay.removeAttribute('id', 'manta-ray-right')
         mantaRay.setAttribute('id', 'manta-ray-up')
-        console.log(mantaRay.id);
+        // console.log(mantaRay.id);
     } else if (event.key === "a" && !cells[mantaIndex-1].classList.contains('wall')) {
         mantaIndex = mantaIndex - 1;
         mantaRay.removeAttribute('id', 'manta-ray-up')
         mantaRay.removeAttribute('id', 'manta-ray-down')
         mantaRay.removeAttribute('id', 'manta-ray-right')
         mantaRay.setAttribute('id', 'manta-ray-left')
-        console.log(mantaRay.id);
+        // console.log(mantaRay.id);
     } else if (event.key === "s" && !cells[mantaIndex+width].classList.contains('wall')) {
         mantaIndex = mantaIndex + width;
         mantaRay.removeAttribute('id', 'manta-ray-up')
         mantaRay.removeAttribute('id', 'manta-ray-left')
         mantaRay.removeAttribute('id', 'manta-ray-right')
         mantaRay.setAttribute('id', 'manta-ray-down')
-        console.log(mantaRay.id);
+        // console.log(mantaRay.id);
     } else if (event.key === "d" && !cells[mantaIndex+1].classList.contains('wall')) {
         mantaIndex = mantaIndex + 1;
         mantaRay.removeAttribute('id', 'manta-ray-up')
         mantaRay.removeAttribute('id', 'manta-ray-down')
         mantaRay.removeAttribute('id', 'manta-ray-left')
         mantaRay.setAttribute('id', 'manta-ray-right')
-        console.log(mantaRay.id);
+        // console.log(mantaRay.id);
     }
     renderMove()
     checkCollision()
