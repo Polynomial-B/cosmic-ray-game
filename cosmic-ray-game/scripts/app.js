@@ -5,7 +5,7 @@ const width = 20
 const height = 20
 const gridCellCount = width * height
 
-
+let mantaEnergy = 3
 
 
 function createGrid() {
@@ -20,7 +20,7 @@ function createGrid() {
 // ? ---------------------------------------------------------------------------------
 // * ---------------------------------------------------------------------------------
 // ? ---------------------------------------------------------------------------------
-        cell.innerText = i     
+        // cell.innerText = i     
 // ? ---------------------------------------------------------------------------------
 // * ---------------------------------------------------------------------------------
 // ? ---------------------------------------------------------------------------------
@@ -51,10 +51,17 @@ function createWall() {
 
 
 // ! Manta Ray
-const mantaRay = document.createElement('div')
-mantaRay.setAttribute('class', 'manta-ray')
 
-let mantaIndex = 369
+
+// const mantaRay = document.createElement('div')
+
+// mantaRay.setAttribute('class', 'manta-ray')
+
+
+let startingPosition = 369
+
+let mantaIndex = startingPosition
+
 function renderManta() {
     cells[mantaIndex].classList.add('manta-ray')
 }
@@ -71,10 +78,13 @@ renderManta()
 
 
 
+
+
+
 // ? Planet One Movement -------------------------------------------------------
 
 
-let planetOneIndex = [301, 303, 309, 311, 314, 317]
+let planetOneIndex = [301, 303, 306, 308, 310, 312, 314, 317]
 const planetOne = document.createElement('div')
 
 
@@ -126,7 +136,7 @@ movePlanetOne()
 // ? Planet Two Movement -------------------------------------------------------
 
 
-let planetTwoIndex = [241, 243, 245, 249, 251, 253, 255, 257]
+let planetTwoIndex = [241, 244, 247, 249, 252, 255, 257]
 const planetTwo = document.createElement('div')
 
 
@@ -154,10 +164,10 @@ function movePlanetTwo() {
         // UPDATE PLANET INDEX 
 
         planetTwoIndex = planetTwoIndex.map((planet, i) => {
-            if(planet >= 258) {
-                return planet -= 17
+            if(planet <= 241) {
+                return planet += 17
             } else {
-                return planet += 1
+                return planet -= 1
             }
             
         })          
@@ -245,17 +255,33 @@ movePlanetThree()
 
 
 // PLAYER MOVE RENDER
-function renderMove() {
-    cells.forEach((cell, index) => {
-        cells[index].classList.remove('manta-ray')
+
+function removeMantaRay() {
+    cells.forEach((cell) => {
+        cell.classList.remove('manta-ray')
+        cell.removeAttribute('id')
     })
-    cells[mantaIndex].classList.add('manta-ray')
 }
+
+function renderMove() {
+    
+    // cells[mantaIndex].classList.add('manta-ray')
+}
+
+
+
 // COLLISION CHECK
 function checkCollision() {
-    if(planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex)) {
-        console.log('collision');
+    if(planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex) || planetThreeIndex.includes(mantaIndex)) {
+        cells[mantaIndex].classList.remove('manta-ray')
         
+        mantaIndex = 369
+        if (mantaEnergy > 0) {
+            renderManta()
+            mantaEnergy --
+        } else {
+            // ! MANTA IS OUT OF ENERGY PLACEHOLDER
+        }
     } 
 }
 
@@ -265,38 +291,52 @@ function checkCollision() {
 const moveMantaRay = (event) => {
     if (event.key === "w" && !cells[mantaIndex-width].classList.contains('wall')) {
         mantaIndex = mantaIndex - width;
-        mantaRay.removeAttribute('id', 'manta-ray-left')
-        mantaRay.removeAttribute('id', 'manta-ray-down')
-        mantaRay.removeAttribute('id', 'manta-ray-right')
-        mantaRay.setAttribute('id', 'manta-ray-up')
-        // console.log(mantaRay.id);
+        removeMantaRay()
+        
+        cells[mantaIndex].setAttribute('id', 'manta-ray-up')
+        
     } else if (event.key === "a" && !cells[mantaIndex-1].classList.contains('wall')) {
         mantaIndex = mantaIndex - 1;
-        mantaRay.removeAttribute('id', 'manta-ray-up')
-        mantaRay.removeAttribute('id', 'manta-ray-down')
-        mantaRay.removeAttribute('id', 'manta-ray-right')
-        mantaRay.setAttribute('id', 'manta-ray-left')
-        // console.log(mantaRay.id);
+        removeMantaRay()
+        
+        cells[mantaIndex].setAttribute('id', 'manta-ray-left')
+
     } else if (event.key === "s" && !cells[mantaIndex+width].classList.contains('wall')) {
         mantaIndex = mantaIndex + width;
-        mantaRay.removeAttribute('id', 'manta-ray-up')
-        mantaRay.removeAttribute('id', 'manta-ray-left')
-        mantaRay.removeAttribute('id', 'manta-ray-right')
-        mantaRay.setAttribute('id', 'manta-ray-down')
-        // console.log(mantaRay.id);
+        removeMantaRay()
+        
+        cells[mantaIndex].setAttribute('id', 'manta-ray-down')
+
     } else if (event.key === "d" && !cells[mantaIndex+1].classList.contains('wall')) {
         mantaIndex = mantaIndex + 1;
-        mantaRay.removeAttribute('id', 'manta-ray-up')
-        mantaRay.removeAttribute('id', 'manta-ray-down')
-        mantaRay.removeAttribute('id', 'manta-ray-left')
-        mantaRay.setAttribute('id', 'manta-ray-right')
-        // console.log(mantaRay.id);
+        removeMantaRay()
+        cells[mantaIndex].setAttribute('id', 'manta-ray-right')
+        
     }
+    
     renderMove()
     checkCollision()
 }
+
 // EVENT LISTENER -- KEYDOWN
 document.addEventListener('keydown', moveMantaRay)
 
+// ! EVENT LISTENER -- BUTTONS
+
+// const resetGame = document.getElementById('#reset-game')
+// resetGame.addEventListener('click', () => {
+//     // RESET ENERGY
+//     mantaEnergy = 3
+//     // REMOVE CURRENT POSITION
+//     cells[mantaIndex].classList.remove('manta-ray')
+//     // RETURN AND RENDER MANTA TO START POSITION
+//     mantaIndex = startingPosition
+//     renderManta()
+//     console.log(mantaEnergy);
+// } )
 
 
+// const highContrast = document.getElementById('#high-contrast')
+// highContrast.addEventListener('click', () => {
+//     console.log('high contrast');
+// } )
