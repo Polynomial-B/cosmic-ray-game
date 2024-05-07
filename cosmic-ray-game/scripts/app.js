@@ -20,7 +20,7 @@ function createGrid() {
 // ? ---------------------------------------------------------------------------------
 // * ---------------------------------------------------------------------------------
 // ? ---------------------------------------------------------------------------------
-        // cell.innerText = i     
+        cell.innerText = i     
 // ? ---------------------------------------------------------------------------------
 // * ---------------------------------------------------------------------------------
 // ? ---------------------------------------------------------------------------------
@@ -74,9 +74,9 @@ renderManta()
 // ? Planet One Movement -------------------------------------------------------
 
 
-let planetOneIndex = [301, 304, 307, 310, 313, 316]
+let planetOneIndex = [301, 303, 309, 311, 314, 317]
 const planetOne = document.createElement('div')
-// planetOne.setAttribute('class', 'planet-one')
+
 
 
 function renderPlanet(planet) {
@@ -113,7 +113,7 @@ function movePlanetOne() {
         // RE-ADD PLANET WITH NEW INDEX    
             
         renderPlanet(planetOneIndex)
-        
+        checkCollision()
     }, 700)
 
 }
@@ -126,23 +126,122 @@ movePlanetOne()
 // ? Planet Two Movement -------------------------------------------------------
 
 
-
-
-let planetTwoIndex = [241, 243, 245, 247, 249, 251, 253, 255, 257]
+let planetTwoIndex = [241, 243, 245, 249, 251, 253, 255, 257]
 const planetTwo = document.createElement('div')
-// planetOne.setAttribute('class', 'planet-two')
 
-function renderPlanetTwo() {
-    planetTwoIndex.forEach((element) => {
+
+function renderPlanetTwo(planet) {
+    planet.forEach((element) => {
         cells[element].classList.add('planet-two')
     })
 } 
 
-renderPlanetTwo()
+function removePlanetTwo() {
+    cells.forEach((cell) => {
+        cell.classList.remove('planet-two')
+    })
+}
 
 
 
-// ! --------------------------------------------------------------------------
+function movePlanetTwo() {
+    // ASYNC TIMING 
+    setInterval(()=>{
+
+        // REMOVE PLANETS
+        removePlanetTwo()
+        
+        // UPDATE PLANET INDEX 
+
+        planetTwoIndex = planetTwoIndex.map((planet, i) => {
+            if(planet >= 258) {
+                return planet -= 17
+            } else {
+                return planet += 1
+            }
+            
+        })          
+        // RE-ADD PLANET WITH NEW INDEX    
+            
+        renderPlanetTwo(planetTwoIndex)
+        checkCollision()
+        
+    }, 990)
+
+}
+        
+
+movePlanetTwo()
+
+
+
+
+// ? Planet Three Movement -------------------------------------------------------
+
+
+
+
+let planetThreeIndex = [344, 349, 352, 354, 359]
+const planetThree = document.createElement('div')
+
+
+function renderPlanetThree(planet) {
+    planet.forEach((element) => {
+        cells[element].classList.add('planet-three')
+    })
+} 
+
+function removePlanetThree() {
+    cells.forEach((cell) => {
+        cell.classList.remove('planet-three')
+    })
+}
+
+
+
+function movePlanetThree() {
+    // ASYNC TIMING 
+    setInterval(()=>{
+
+        // REMOVE PLANETS
+        removePlanetThree()
+        
+        // UPDATE PLANET INDEX 
+
+        planetThreeIndex = planetThreeIndex.map((planet, i) => {
+            if(planet >= 358) {
+                return planet -= 17
+            } else {
+                return planet += 1
+            }
+            
+        })          
+        // RE-ADD PLANET WITH NEW INDEX    
+            
+        renderPlanetThree(planetThreeIndex)
+        checkCollision()
+        
+    }, 1100)
+
+}
+        
+
+movePlanetThree()
+
+
+
+
+
+
+
+
+
+// * --------------------------------------------------------------------------
+// * --------------------------------------------------------------------------
+// * --------------------------------------------------------------------------
+// * --------------------------------------------------------------------------
+
+
 
 
 // PLAYER MOVE RENDER
@@ -154,7 +253,7 @@ function renderMove() {
 }
 // COLLISION CHECK
 function checkCollision() {
-    if(planetOneIndex.includes(mantaIndex)) {
+    if(planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex)) {
         console.log('collision');
         
     } 
