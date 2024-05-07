@@ -22,6 +22,7 @@
     height: 100%;
     height: 600px;
     width: 600px;
+
   }
   
   .grid div {
@@ -37,16 +38,54 @@
     background-size: contain;
     cursor: pointer;
   }
+ 
 
   .grid div.planet-one {
-    background-image: url('../assets/planet-2png.png');
+    background-image: url('../assets/planet-1.png');
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
   }
   
   .wall {
-    background-color: rgb(84, 97, 116);
+    background-color: rgb(12, 35, 69);
     border: none;
     color:  rgb(32, 30, 30);
   }
+
+
+  .grid div#manta-ray-up {
+    background-image: url('../assets/manta-ray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: none;
+    rotate: 0deg;
+  }
+
+  .grid div#manta-ray-left {
+    background-image: url('../assets/manta-ray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: none;
+    rotate: -90deg;
+  }
+
+  .grid div#manta-ray-down {
+    background-image: url('../assets/manta-ray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: none;
+    transform: rotate(180deg);
+  }
+
+  .grid div#manta-ray-right {
+    background-image: url('../assets/manta-ray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: none;
+    rotate: 90deg;
+  }
+
+
+
+

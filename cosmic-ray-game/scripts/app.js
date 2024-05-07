@@ -41,12 +41,7 @@ function createWall() {
     })
 }
 
-function render() {
-    createGrid()
-    createWall()
-}
 
-render()
 
 
 // ! Manta Ray
@@ -54,68 +49,128 @@ const mantaRay = document.createElement('div')
 mantaRay.setAttribute('class', 'manta-ray')
 
 let mantaIndex = 369
-cells[mantaIndex].classList.add('manta-ray')
+function renderManta() {
+    cells[mantaIndex].classList.add('manta-ray')
+}
+
+
+function render() {
+    createGrid()
+    createWall()
+    
+}
+
+render()
+renderManta()
+
 
 
 // ! Obstacles -------------------------------------------------------
 
 
-let planetOneIndex = [281, 286, 291, 296]
+let planetOneIndex = [281, 284, 287, 290, 293, 296]
 const planetOne = document.createElement('div')
 planetOne.setAttribute('class', 'planet-one')
 
-function cyclePlanetOne() {
+// * CODE BELOW
+
+
+function movePlanets() {
+    cells.forEach((cell) => {
+        cell.classList.remove('planet-one')
+    })
+    
+    planetOneIndex.forEach((planet, i) => {
+        planetOneIndex[i] = planet + 1
+    }
+    
+)}
+
+function renderPlanet() {
     planetOneIndex.forEach((element) => {
         cells[element].classList.add('planet-one')
     })
-    
+}    
+
+function loopPlanet() {
+    setInterval(
+        function loop() {
+            for(let i = 1; i < 3; i++) {
+                movePlanets()
+                renderPlanet()
+                console.log(planetOneIndex)
+            }
+            planetOneIndex = [281, 284, 287, 290, 293, 296]
+        }, 750)
+        
+        
 }
 
-cyclePlanetOne()
+renderPlanet()
+// console.log(planetOneIndex);
+
+// loopPlanet()
 
 
-console.log(planetOneIndex);
 
-// cells[setInterval(cyclePlanetOne, 100)].classList.add('planet-one')
 
 
 
 // ! -------------------------------------------------------
 
 
-
+// PLAYER MOVE RENDER
 function renderMove() {
     cells.forEach((cell, index) => {
         cells[index].classList.remove('manta-ray')
     })
     cells[mantaIndex].classList.add('manta-ray')
 }
-
+// COLLISION CHECK
 function checkCollision() {
     if(planetOneIndex.includes(mantaIndex)) {
         console.log('collision');
+        
     }
 }
 
 
 
-
+// PLAYER MOVEMENT
 const moveMantaRay = (event) => {
     if (event.key === "w" && !cells[mantaIndex-width].classList.contains('wall')) {
         mantaIndex = mantaIndex - width;
+        mantaRay.removeAttribute('id', 'manta-ray-left')
+        mantaRay.removeAttribute('id', 'manta-ray-down')
+        mantaRay.removeAttribute('id', 'manta-ray-right')
+        mantaRay.setAttribute('id', 'manta-ray-up')
+        console.log(mantaRay.id);
     } else if (event.key === "a" && !cells[mantaIndex-1].classList.contains('wall')) {
         mantaIndex = mantaIndex - 1;
+        mantaRay.removeAttribute('id', 'manta-ray-up')
+        mantaRay.removeAttribute('id', 'manta-ray-down')
+        mantaRay.removeAttribute('id', 'manta-ray-right')
+        mantaRay.setAttribute('id', 'manta-ray-left')
+        console.log(mantaRay.id);
     } else if (event.key === "s" && !cells[mantaIndex+width].classList.contains('wall')) {
         mantaIndex = mantaIndex + width;
+        mantaRay.removeAttribute('id', 'manta-ray-up')
+        mantaRay.removeAttribute('id', 'manta-ray-left')
+        mantaRay.removeAttribute('id', 'manta-ray-right')
+        mantaRay.setAttribute('id', 'manta-ray-down')
+        console.log(mantaRay.id);
     } else if (event.key === "d" && !cells[mantaIndex+1].classList.contains('wall')) {
         mantaIndex = mantaIndex + 1;
+        mantaRay.removeAttribute('id', 'manta-ray-up')
+        mantaRay.removeAttribute('id', 'manta-ray-down')
+        mantaRay.removeAttribute('id', 'manta-ray-left')
+        mantaRay.setAttribute('id', 'manta-ray-right')
+        console.log(mantaRay.id);
     }
     renderMove()
     checkCollision()
 }
-
-
-
+// EVENT LISTENER -- KEYDOWN
 document.addEventListener('keydown', moveMantaRay)
 
 
