@@ -6,6 +6,7 @@
     height: 100vh;
     margin: 0;
     background-color: rgb(5, 3, 53);
+    font-family: monospace, sans-serif;
   }
   
   h1 {
@@ -17,25 +18,29 @@
   nav {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 10vh;
-    margin: 1vw;
+    justify-content: center;
+    align-self: center;
+
   }
   
-  nav div.buttons {
+  .buttons {
     width: 100vw;
     display: flex;
-    color: white;
-    flex-direction: row;
     align-content: center;
     justify-content: center;
-    margin-top: 1em;
   }
 
-  button {
+  img {
     margin: 0.2em;
     display: flex;
+    background-color: rgba(153, 159, 196, 0.3);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
+    background-size: contains;
+    border-radius: 100%;
+    margin: 1rem;
+    cursor: pointer;
   }
+
 
   #manta-energy {
     color: white;
@@ -47,26 +52,36 @@
   }
 
   .grid-wrapper {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
   }
   
   .grid {
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.748);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
     display: flex;
     flex-wrap: wrap;
     height: 100%;
     height: 600px;
     width: 600px;
+    align-self: center;
   }
   
   .grid div {
     border: 1px solid rgb(36, 48, 126);
     height: 5%;
     width: 5%;
-    color: grey;
+    color: #C2C2C2;
+    text-align: center;
+  }
+
+  .end {
+    background-image: url('../assets/earth.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.9;
   }
   
   .grid div.manta-ray {
@@ -160,6 +175,8 @@
     cursor: none;
     rotate: 90deg;
   }
+
+  
 
 
 
