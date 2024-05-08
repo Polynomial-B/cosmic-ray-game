@@ -5,7 +5,15 @@ const width = 20
 const height = 20
 const gridCellCount = width * height
 
+let isGameOver = false
+let isWin = false
+
 let mantaEnergy = 3
+const mantaEnergyValue = document.getElementById('manta-energy')
+
+function showEnergyValue() {
+    mantaEnergyValue.innerText = `Energy remaining: ${mantaEnergy}`
+}
 
 
 function createGrid() {
@@ -29,33 +37,35 @@ function createGrid() {
 }
 
 function createWall() {
-    // Create main side walls
-    for(let i = 0; i < gridCellCount; i = i + 20) {
-        cells[i].classList.add('wall')
-        cells[i + (width - 1)].classList.add('wall')
-    }
-    for(let i = 1; i < width; i ++) {
-        cells[i].classList.add('wall')
-    }
+    
+    if (!isGameOver) {
+        // Create main side walls
+        for(let i = 0; i < gridCellCount; i = i + 20) {
+            cells[i].classList.add('wall')
+            cells[i + (width - 1)].classList.add('wall')
+        }
+        for(let i = 1; i < width; i ++) {
+            if(i !== 9 & i !== 10) {
+                cells[i].classList.add('wall')
+            }
+    
+        }
+        cells[9].classList.add('end')
+        cells[10].classList.add('end')
 
-    // Create internal walls
-    let blockIndex = [161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
-    
-    blockIndex.forEach((cell) => {
-        cells[cell].classList.add('wall')
-    
-    })
+        // Create internal walls
+        let blockIndex = [161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
+        
+        blockIndex.forEach((cell) => {
+            cells[cell].classList.add('wall')
+        
+        })
+    }
 }
 
 
 
-
 // ! Manta Ray
-
-
-// const mantaRay = document.createElement('div')
-
-// mantaRay.setAttribute('class', 'manta-ray')
 
 
 let startingPosition = 369
@@ -67,14 +77,20 @@ function renderManta() {
 }
 
 
+// * RENDER ------------------------------------------------------------------
+
+
 function render() {
+    mantaIndex = startingPosition
+    isGameOver = false
+    isWin = false
     createGrid()
     createWall()
-    
+    showEnergyValue()
+    renderManta()
 }
 
 render()
-renderManta()
 
 
 
@@ -90,9 +106,11 @@ const planetOne = document.createElement('div')
 
 
 function renderPlanet(planet) {
-    planet.forEach((element) => {
+    if (!isGameOver) {
+        planet.forEach((element) => {
         cells[element].classList.add('planet-one')
-    })
+        })
+    }
 } 
 
 function removePlanetOne() {
@@ -141,9 +159,11 @@ const planetTwo = document.createElement('div')
 
 
 function renderPlanetTwo(planet) {
-    planet.forEach((element) => {
-        cells[element].classList.add('planet-two')
-    })
+    if (!isGameOver) {
+        planet.forEach((element) => {
+            cells[element].classList.add('planet-two')
+        })
+}
 } 
 
 function removePlanetTwo() {
@@ -196,9 +216,11 @@ const planetThree = document.createElement('div')
 
 
 function renderPlanetThree(planet) {
-    planet.forEach((element) => {
+    if (!isGameOver) {
+        planet.forEach((element) => {
         cells[element].classList.add('planet-three')
-    })
+        })
+    }
 } 
 
 function removePlanetThree() {
@@ -263,26 +285,77 @@ function removeMantaRay() {
     })
 }
 
-function renderMove() {
-    
-    // cells[mantaIndex].classList.add('manta-ray')
-}
-
 
 
 // COLLISION CHECK
 function checkCollision() {
     if(planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex) || planetThreeIndex.includes(mantaIndex)) {
-        cells[mantaIndex].classList.remove('manta-ray')
+        removeMantaRay()
         
         mantaIndex = 369
-        if (mantaEnergy > 0) {
-            renderManta()
+        renderManta()
+        if (mantaEnergy > 1) {
             mantaEnergy --
+            showEnergyValue()
         } else {
-            // ! MANTA IS OUT OF ENERGY PLACEHOLDER
+            mantaEnergy --
+            showEnergyValue()
+            console.log('game over')
+            isGameOver = true
+            gameOver()
         }
     } 
+}
+
+
+function removeAllGridItems() {
+    cells.forEach((cell) => {
+        cell.removeAttribute('id')
+        cell.removeAttribute('class')
+    })
+    
+}
+
+
+function gameOver() {
+    removeAllGridItems()
+    const gameOverMessage = ` Ray has stopped      at a               hospitable                                planet to  rest.            However,                       as Ray    is a     space-time                anomaly  she    will have to        restart her                             journey...                            Reset to try again`
+
+
+    cells.forEach((cell, index) => {
+        if(index >= 20 && index < 20 + gameOverMessage.length && index !== 50) {
+            let letterIndex = index - 20
+            cell.innerText = gameOverMessage[letterIndex].toUpperCase()
+            
+        }
+    })
+
+}
+
+
+
+function gameWin() {
+    removeAllGridItems()
+    const gameOverMessage = ` Ray has arrived                          safely                                    back at her      destination.                               She thanks you    for your                                  company  and      invites                                  you to travel                                  again,                            or whatever...`
+
+
+    cells.forEach((cell, index) => {
+        if(index >= 20 && index < 20 + gameOverMessage.length && index !== 50) {
+            let letterIndex = index - 20
+            cell.innerText = gameOverMessage[letterIndex].toUpperCase()
+            
+        }
+    })
+
+}
+
+
+
+// CHECK WIN
+function checkWin() {
+    if(mantaIndex === 9 || mantaIndex === 10) {
+        gameWin()
+    }
 }
 
 
@@ -314,8 +387,9 @@ const moveMantaRay = (event) => {
         
     }
     
-    renderMove()
+    
     checkCollision()
+    checkWin()
 }
 
 // EVENT LISTENER -- KEYDOWN
@@ -323,20 +397,20 @@ document.addEventListener('keydown', moveMantaRay)
 
 // ! EVENT LISTENER -- BUTTONS
 
-// const resetGame = document.getElementById('#reset-game')
-// resetGame.addEventListener('click', () => {
-//     // RESET ENERGY
-//     mantaEnergy = 3
-//     // REMOVE CURRENT POSITION
-//     cells[mantaIndex].classList.remove('manta-ray')
-//     // RETURN AND RENDER MANTA TO START POSITION
-//     mantaIndex = startingPosition
-//     renderManta()
-//     console.log(mantaEnergy);
-// } )
+
+const resetGame = document.getElementById('reset-game')
+resetGame.addEventListener('click', () => {
+    window.location.reload()
+} )
 
 
-// const highContrast = document.getElementById('#high-contrast')
-// highContrast.addEventListener('click', () => {
-//     console.log('high contrast');
-// } )
+const toggleContrast = document.getElementById('toggle-contrast')
+toggleContrast.addEventListener('click', () => {
+    console.log('high contrast')
+
+} )
+
+const toggleMusic = document.getElementById('toggle-music')
+toggleMusic.addEventListener('click', () => {
+        console.log("hello")
+})
