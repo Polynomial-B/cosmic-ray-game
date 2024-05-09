@@ -7,13 +7,14 @@
     --secondary-color: white;
     --image-background: rgba(153, 159, 196, 0.4);
     --wall-background: rgb(12, 35, 69);
-    --object-background: none;
     --object-opacity: 0.2;
     --image-hover: none;
     --font-weight: 200;
     --font-family: monospace, sans-serif;
     --end-game-text: white;
-    --grid-div-border: 1px dashed rgb(36, 48, 126, 0.2)
+    --grid-div-border: 1px dashed rgb(36, 48, 126, 0.2);
+    --end-game-background: rgb(69, 11, 124);
+    /* --object-background: transparent; */
   }
 
   .high-contrast-theme {
@@ -21,13 +22,14 @@
     --secondary-color: rgb(5, 3, 53);
     --image-background: rgb(5, 3, 53);
     --wall-background: rgb(4, 12, 24);
-    --object-background: black;
     --object-opacity: 0.9;
     --image-hover: red;
     --font-family: sans-serif;
     --font-weight: 900;
     --end-game-text: black;
-    --grid-div-border: 1px solid rgb(36, 48, 126)
+    --grid-div-border: 1px solid rgb(36, 48, 126);
+    --end-game-background: rgb(13, 119, 129);
+    --object-background: black;
   }
 
   body {
@@ -168,9 +170,46 @@
     background-color: var(--object-background);
   }
 
-
-  .grid div.meteor {
+  .grid div.planet-four {
     background-image: url('../assets/meteor.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 100%;
+    cursor: pointer;
+    opacity: var(--object-opacity);
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+    background-color: var(--object-background);
+    rotate: -45deg;
+  }
+
+  .grid div.planet-five {
+    background-image: url('../assets/purple-galaxy.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    opacity: var(--object-opacity);
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+    background-color: var(--object-background);
+  }
+
+  .grid div.planet-six {
+    background-image: url('../assets/planet-4.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    opacity: var(--object-opacity);
+    -webkit-transition: opacity 1000ms ease;
+    -moz-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+    background-color: var(--object-background);
+  }
+
+  .grid div.planet-seven {
+    background-image: url('../assets/mercury.png');
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
@@ -183,13 +222,11 @@
 
   .wall {
     background-color: var(--wall-background);
-  
     border: none;
   }
 
   .end-game {
-    background-color: rgb(69, 11, 124);
-    color: red;
+    background-color: var(--end-game-background);
     border: none;
   }
 
