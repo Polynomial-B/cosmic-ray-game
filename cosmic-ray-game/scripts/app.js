@@ -106,7 +106,7 @@ const planetOne = document.createElement('div')
 
 
 function renderPlanet(planet) {
-    if (!isGameOver) {
+    if (!isGameOver && !isWin) {
         planet.forEach((element) => {
         cells[element].classList.add('planet-one')
         })
@@ -159,7 +159,7 @@ const planetTwo = document.createElement('div')
 
 
 function renderPlanetTwo(planet) {
-    if (!isGameOver) {
+    if (!isGameOver && !isWin) {
         planet.forEach((element) => {
             cells[element].classList.add('planet-two')
         })
@@ -216,7 +216,7 @@ const planetThree = document.createElement('div')
 
 
 function renderPlanetThree(planet) {
-    if (!isGameOver) {
+    if (!isGameOver && !isWin) {
         planet.forEach((element) => {
         cells[element].classList.add('planet-three')
         })
@@ -289,22 +289,22 @@ function removeMantaRay() {
 
 // COLLISION CHECK
 function checkCollision() {
-    if(planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex) || planetThreeIndex.includes(mantaIndex)) {
-        removeMantaRay()
-        
-        mantaIndex = 369
-        renderManta()
-        if (mantaEnergy > 1) {
-            mantaEnergy --
-            showEnergyValue()
-        } else {
-            mantaEnergy --
-            showEnergyValue()
-            console.log('game over')
-            isGameOver = true
-            gameOver()
-        }
-    } 
+        if((planetOneIndex.includes(mantaIndex) || planetTwoIndex.includes(mantaIndex) || planetThreeIndex.includes(mantaIndex)) && (!isWin && !isGameOver)) {
+            removeMantaRay()
+            
+            mantaIndex = 369
+            renderManta()
+            if (mantaEnergy > 1) {
+                mantaEnergy --
+                showEnergyValue()
+            } else {
+                mantaEnergy --
+                showEnergyValue()
+                console.log('game over')
+                isGameOver = true
+                gameOver()
+            }
+        } 
 }
 
 
@@ -314,6 +314,12 @@ function removeAllGridItems() {
         cell.removeAttribute('class')
     })
     
+}
+
+function mantaEndStateCheck() {
+    if((isWin || isGameOver) && mantaIndex.innerText !== " ") {
+        cells[mantaIndex].classList.add("end-game")
+    }
 }
 
 
@@ -335,6 +341,7 @@ function gameOver() {
 
 
 function gameWin() {
+    isWin = true
     removeAllGridItems()
     const gameOverMessage = ` Ray has arrived                          safely                                    back at her      destination.                               She thanks you    for your                                  company  and      invites                                  you to travel                                  again,                            or whatever...`
 
@@ -390,6 +397,7 @@ const moveMantaRay = (event) => {
     
     checkCollision()
     checkWin()
+    mantaEndStateCheck()
 }
 
 // EVENT LISTENER -- KEYDOWN
@@ -411,6 +419,8 @@ toggleContrast.addEventListener('click', () => {
 } )
 
 const toggleMusic = document.getElementById('toggle-music')
-toggleMusic.addEventListener('click', () => {
-        console.log("hello")
+toggleMusic.addEventListener('toggle', () => {
+    console.log(toggleMusic)
+    toggleMusic.src.innerText ="../assets/music-on.png"
+
 })
