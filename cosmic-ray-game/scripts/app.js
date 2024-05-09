@@ -412,15 +412,24 @@ resetGame.addEventListener('click', () => {
 } )
 
 
+const body = document.querySelector('body')
+
 const toggleContrast = document.getElementById('toggle-contrast')
 toggleContrast.addEventListener('click', () => {
-    console.log('high contrast')
+    body.classList.toggle('high-contrast-theme')
 
 } )
 
-const toggleMusic = document.getElementById('toggle-music')
-toggleMusic.addEventListener('toggle', () => {
-    console.log(toggleMusic)
-    toggleMusic.src.innerText ="../assets/music-on.png"
 
-})
+
+
+
+
+
+// const toggleMusic = document.getElementById('toggle-music')
+// toggleMusic.addEventListener('toggle', () => {
+//     console.log(toggleMusic)
+//     toggleMusic.src.innerText ="../assets/music-on.png"
+
+// })
+

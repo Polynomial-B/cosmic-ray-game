@@ -2,11 +2,39 @@
     box-sizing: border-box;
   }
   
+  :root {
+    --main-color: rgb(5, 3, 53);
+    --secondary-color: white;
+    --image-background: rgba(153, 159, 196, 0.4);
+    --wall-background: rgb(12, 35, 69);
+    --object-background: none;
+    --object-opacity: 0.2;
+    --image-hover: none;
+    --font-weight: 200;
+    --font-family: monospace, sans-serif;
+    --end-game-text: white;
+    --grid-div-border: 1px dashed rgb(36, 48, 126, 0.2)
+  }
+
+  .high-contrast-theme {
+    --main-color: rgba(177, 179, 221, 0.726);
+    --secondary-color: rgb(5, 3, 53);
+    --image-background: rgb(5, 3, 53);
+    --wall-background: rgb(4, 12, 24);
+    --object-background: black;
+    --object-opacity: 0.9;
+    --image-hover: red;
+    --font-family: sans-serif;
+    --font-weight: 900;
+    --end-game-text: black;
+    --grid-div-border: 1px solid rgb(36, 48, 126)
+  }
+
   body {
     height: 100vh;
     margin: 0;
-    background-color: rgb(5, 3, 53);
-    font-family: monospace, sans-serif;
+    background-color: var(--main-color);
+    font-family: var(--font-family);
   }
   
   h1 {
@@ -38,7 +66,7 @@
   img {
     margin: 0.2em;
     display: flex;
-    background-color: rgba(153, 159, 196, 0.3);
+    background-color: var(--image-background);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
     background-size: contains;
     border-radius: 100%;
@@ -46,14 +74,17 @@
     cursor: pointer;
   }
 
+  img:hover {
+    background: var(--image-hover);
+  }
+
 
   #manta-energy {
-    color: white;
+    color: var(--secondary-color);
     display: flex;
     align-self: center;
     justify-content: center;
     margin-top: 1em 0;
-
   }
 
   .grid-wrapper {
@@ -75,11 +106,12 @@
   }
   
   .grid div {
-    border: 1px solid rgb(36, 48, 126);
+    border: var(--grid-div-border);
     height: 5%;
     width: 5%;
-    color: #C2C2C2;
     text-align: center;
+    color: var(--end-game-text);
+    font-weight: var(--font-weight);
   }
 
   .end {
@@ -87,6 +119,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.9;
+    background-color: var(--object-background);
+
   }
   
   .grid div.manta-ray {
@@ -94,6 +128,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
+    background-color: var(--object-background);
   }
  
 
@@ -102,10 +137,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    opacity: 0.4;
+    opacity: var(--object-opacity);
     -webkit-transition: opacity 700ms ease-in-out;
     -moz-transition: opacity 700ms ease-in-out;
     transition: opacity 700ms ease-in-out;
+    background-color: var(--object-background);
   }
   
   .grid div.planet-two {
@@ -113,10 +149,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    opacity: 0.2;
+    opacity: var(--object-opacity);
     -webkit-transition: opacity 900ms ease-in;
     -moz-transition: opacity 900ms ease-in;
     transition: opacity 900ms ease-in;
+    background-color: var(--object-background);
   }
 
   .grid div.planet-three {
@@ -124,10 +161,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    opacity: 0.2;
+    opacity: var(--object-opacity);
     -webkit-transition: opacity 1000ms ease;
     -moz-transition: opacity 1000ms ease;
     transition: opacity 1000ms ease;
+    background-color: var(--object-background);
   }
 
 
@@ -136,16 +174,17 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    opacity: 0.2;
+    opacity: var(--object-opacity);
     -webkit-transition: opacity 1000ms ease;
     -moz-transition: opacity 1000ms ease;
     transition: opacity 1000ms ease;
+    background-color: var(--object-background);
   }
 
   .wall {
-    background-color: rgb(12, 35, 69);
+    background-color: var(--wall-background);
+  
     border: none;
-    color:  rgb(32, 30, 30);
   }
 
   .end-game {
@@ -160,6 +199,7 @@
     background-size: contain;
     cursor: none;
     rotate: 0deg;
+    background-color: var(--object-background);
   }
 
   .grid div#manta-ray-left {
@@ -168,6 +208,7 @@
     background-size: contain;
     cursor: none;
     rotate: -90deg;
+    background-color: var(--object-background);
   }
 
   .grid div#manta-ray-down {
@@ -176,6 +217,7 @@
     background-size: contain;
     cursor: none;
     transform: rotate(180deg);
+    background-color: var(--object-background);
   }
 
   .grid div#manta-ray-right {
@@ -184,6 +226,7 @@
     background-size: contain;
     cursor: none;
     rotate: 90deg;
+    background-color: var(--object-background);
   }
 
   
