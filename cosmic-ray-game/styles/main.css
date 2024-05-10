@@ -15,6 +15,8 @@
   --end-game-background: rgb(69, 11, 124, 0.7);
   --end-game-window-background: url("../assets/space-background.jpg");
   --image-hover-border-radius: 100%;
+  --object-background: transparent;
+  --intro-background: transparent;
 }
 
 .high-contrast-theme {
@@ -31,6 +33,8 @@
   --end-game-background: rgb(123, 13, 129, 0.7);
   --end-game-window-background: url("../assets/light-background.jpg");
   --image-hover-border-radius: 0%;
+  --object-background: rgb(10, 13, 31);
+  --intro-background: rgb(10, 13, 31);
 }
 
 body {
@@ -46,11 +50,12 @@ body {
   background-size: cover;
 }
 
-/* h1 {
-  color: grey;
+.game-title {
   display: flex;
-  justify-content: center;
-} */
+  align-self: center;
+  font-size: 2em;
+  justify-self: center;
+}
 
 .nav-game-wrapper {
   display: flex;
@@ -66,10 +71,18 @@ nav {
   margin-bottom: 10px;
 }
 
+.game-title {
+  width: 20vw;
+  justify-content: space-evenly;
+  color: white;
+  align-self: flex-end;
+}
+
 .buttons {
   display: flex;
   align-content: center;
   justify-content: center;
+  align-self: center;
 }
 
 img {
@@ -88,12 +101,18 @@ img:hover {
   border-radius: var(--image-hover-border-radius);
 }
 
+.intro {
+  background: var(--intro-background)
+}
+
 #manta-energy {
   color: var(--secondary-color);
   display: flex;
   align-self: center;
   justify-content: center;
-  margin-top: 1em 0;
+  margin: 0.6em;
+  font-weight: var(--font-weight);
+  font-size: 1.3em;
 }
 
 .grid-wrapper {
@@ -124,11 +143,11 @@ img:hover {
 
 .intro {
   display: flex;
-  margin-top: 0.6em;
   color: white;
   align-self: center;
   align-content: center;
   justify-content: center;
+  padding: 5px;
 }
 
 .end {
