@@ -8,12 +8,13 @@
   --image-background: rgba(153, 159, 196, 0.4);
   --wall-background: rgb(12, 35, 69);
   --object-opacity: 0.2;
-  --image-hover: none;
+  --image-hover: rgb(69, 11, 124, 0.5);
   --font-weight: 200;
   --font-family: monospace, sans-serif;
   --end-game-text: white;
   --end-game-background: rgb(69, 11, 124, 0.7);
-  --end-game-window-background: url("../assets/space-background.jpg")
+  --end-game-window-background: url("../assets/space-background.jpg");
+  --image-hover-border-radius: 100%;
 }
 
 .high-contrast-theme {
@@ -22,14 +23,14 @@
   --image-background: rgb(5, 3, 53);
   --wall-background: rgb(4, 12, 24);
   --object-opacity: 0.9;
-  --image-hover: red;
+  --image-hover: #870808;
   --font-family: sans-serif;
   --font-weight: 900;
   --end-game-text: black;
   --grid-div-border: 1px solid rgb(10, 13, 31);
-  --end-game-background: rgb(13, 119, 129);
-  --object-background: black;
-  --end-game-window-background: url("../assets/light-background.jpg")
+  --end-game-background: rgb(123, 13, 129, 0.7);
+  --end-game-window-background: url("../assets/light-background.jpg");
+  --image-hover-border-radius: 0%;
 }
 
 body {
@@ -38,16 +39,18 @@ body {
   background-color: var(--main-color);
   font-family: var(--font-family);
   background-image: var(--end-game-window-background);
+  display: flex;
+  flex-direction: column;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-h1 {
+/* h1 {
   color: grey;
   display: flex;
   justify-content: center;
-}
+} */
 
 .nav-game-wrapper {
   display: flex;
@@ -60,10 +63,10 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  margin-bottom: 10px;
 }
 
 .buttons {
-  width: 100vw;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -82,6 +85,7 @@ img {
 
 img:hover {
   background: var(--image-hover);
+  border-radius: var(--image-hover-border-radius);
 }
 
 #manta-energy {
@@ -93,7 +97,6 @@ img:hover {
 }
 
 .grid-wrapper {
-  height: 80vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -121,6 +124,7 @@ img:hover {
 
 .intro {
   display: flex;
+  margin-top: 0.6em;
   color: white;
   align-self: center;
   align-content: center;
