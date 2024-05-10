@@ -458,6 +458,7 @@ const moveMantaRay = (event) => {
   checkCollision();
   checkWin();
   mantaEndStateCheck();
+  mantaAudio.play()
 };
 
 // EVENT LISTENER -- KEYDOWN
@@ -472,29 +473,36 @@ resetGame.addEventListener("click", () => {
 
 const body = document.querySelector("body");
 
+let isHighContrast = false
+
 const toggleContrast = document.getElementById("toggle-contrast");
 toggleContrast.addEventListener("click", () => {
   body.classList.toggle("high-contrast-theme");
-  if ((toggleContrast.src = "./assets/high-contrast-off.png")) {
+  if (isHighContrast === false) {
     toggleContrast.src = "./assets/high-contrast-on.png";
+    isHighContrast = true
   } else {
-    toggleContrast.src = "./assets/high-contrast-on.png";
+    toggleContrast.src = "./assets/high-contrast-off.png";
+    isHighContrast = false
   }
 });
 
 const mantaAudio = document.getElementById("manta-audio");
+
+const backingMusic = document.getElementById("audio-player")
+
 const toggleMusic = document.getElementById("toggle-music");
 
 let isPlaying = false;
 
 toggleMusic.addEventListener("click", () => {
   if (!isPlaying) {
-    mantaAudio.play();
-    isPlaying = true;
-    toggleMusic.src = "./assets/music-on.png";
+      isPlaying = true;
+      toggleMusic.src = "./assets/music-on.png";
+      backingMusic.play();
   } else {
-    mantaAudio.play();
-    isPlaying = false;
-    toggleMusic.src = "./assets/music-off.png";
+      isPlaying = false;
+      toggleMusic.src = "./assets/music-off.png";
+      backingMusic.pause();
   }
 });
