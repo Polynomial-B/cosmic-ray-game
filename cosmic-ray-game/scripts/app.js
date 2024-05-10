@@ -45,7 +45,7 @@ function createWall() {
 
     // Create internal walls
     let blockIndex = [
-      161, 162, 163, 176, 177, 178, 181, 182, 183, 196, 197, 198, 381, 382, 383,
+      161, 162, 163, 168, 169, 170, 171, 176, 177, 178, 181, 182, 183, 188, 189, 190, 191, 196, 197, 198, 381, 382, 383,
       384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398,
     ];
 
@@ -288,7 +288,7 @@ function movePlanetFive() {
 
     renderPlanetFive(planetFiveIndex);
     checkCollision();
-  }, 500);
+  }, 110);
 }
 
 movePlanetFive();
@@ -352,7 +352,10 @@ function checkCollision() {
   if (
     (planetOneIndex.includes(mantaIndex) ||
       planetTwoIndex.includes(mantaIndex) ||
-      planetThreeIndex.includes(mantaIndex)) &&
+      planetThreeIndex.includes(mantaIndex) ||
+      planetFourIndex.includes(mantaIndex) ||
+      planetFiveIndex.includes(mantaIndex) ||
+      planetSixIndex.includes(mantaIndex)) &&
     !isWin &&
     !isGameOver
   ) {
@@ -366,7 +369,6 @@ function checkCollision() {
     } else {
       mantaEnergy--;
       showEnergyValue();
-      console.log("game over");
       isGameOver = true;
       gameOver();
     }
