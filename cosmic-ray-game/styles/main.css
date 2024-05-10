@@ -1,273 +1,276 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  :root {
-    --main-color: rgb(5, 3, 53);
-    --secondary-color: white;
-    --image-background: rgba(153, 159, 196, 0.4);
-    --wall-background: rgb(12, 35, 69);
-    --object-opacity: 0.2;
-    --image-hover: none;
-    --font-weight: 200;
-    --font-family: monospace, sans-serif;
-    --end-game-text: white;
-    --grid-div-border: 1px dashed rgb(36, 48, 126, 0.2);
-    --end-game-background: rgb(69, 11, 124);
-    /* --object-background: transparent; */
-  }
+  box-sizing: border-box;
+}
 
-  .high-contrast-theme {
-    --main-color: rgba(177, 179, 221, 0.726);
-    --secondary-color: rgb(5, 3, 53);
-    --image-background: rgb(5, 3, 53);
-    --wall-background: rgb(4, 12, 24);
-    --object-opacity: 0.9;
-    --image-hover: red;
-    --font-family: sans-serif;
-    --font-weight: 900;
-    --end-game-text: black;
-    --grid-div-border: 1px solid rgb(36, 48, 126);
-    --end-game-background: rgb(13, 119, 129);
-    --object-background: black;
-  }
+:root {
+  --main-color: rgb(5, 3, 53);
+  --secondary-color: white;
+  --image-background: rgba(153, 159, 196, 0.4);
+  --wall-background: rgb(12, 35, 69);
+  --object-opacity: 0.2;
+  --image-hover: none;
+  --font-weight: 200;
+  --font-family: monospace, sans-serif;
+  --end-game-text: white;
+  --end-game-background: rgb(69, 11, 124, 0.7);
+  --end-game-window-background: url("../assets/space-background.jpg")
+}
 
-  body {
-    height: 100vh;
-    margin: 0;
-    background-color: var(--main-color);
-    font-family: var(--font-family);
-  }
-  
-  h1 {
-    color: grey;
-    display: flex;
-    justify-content: center;
-  }
+.high-contrast-theme {
+  --main-color: rgba(177, 179, 221, 0.726);
+  --secondary-color: rgb(5, 3, 53);
+  --image-background: rgb(5, 3, 53);
+  --wall-background: rgb(4, 12, 24);
+  --object-opacity: 0.9;
+  --image-hover: red;
+  --font-family: sans-serif;
+  --font-weight: 900;
+  --end-game-text: black;
+  --grid-div-border: 1px solid rgb(10, 13, 31);
+  --end-game-background: rgb(13, 119, 129);
+  --object-background: black;
+  --end-game-window-background: url("../assets/light-background.jpg")
+}
 
-  .nav-game-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: var(--main-color);
+  font-family: var(--font-family);
+  background-image: var(--end-game-window-background);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
-  nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-  }
-  
-  .buttons {
-    width: 100vw;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
+h1 {
+  color: grey;
+  display: flex;
+  justify-content: center;
+}
 
-  img {
-    margin: 0.2em;
-    display: flex;
-    background-color: var(--image-background);
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
-    background-size: contains;
-    border-radius: 100%;
-    margin: 1rem;
-    cursor: pointer;
-  }
+.nav-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  img:hover {
-    background: var(--image-hover);
-  }
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+}
 
+.buttons {
+  width: 100vw;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 
-  #manta-energy {
-    color: var(--secondary-color);
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    margin-top: 1em 0;
-  }
+img {
+  margin: 0.2em;
+  display: flex;
+  background-color: var(--image-background);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
+  background-size: contains;
+  border-radius: 100%;
+  margin: 1rem;
+  cursor: pointer;
+}
 
-  .grid-wrapper {
-    height: 80vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    align-self: center;
-  }
-  
-  .grid {
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    height: 600px;
-    width: 600px;
-    align-self: center;
-  }
-  
-  .grid div {
-    border: var(--grid-div-border);
-    height: 5%;
-    width: 5%;
-    text-align: center;
-    color: var(--end-game-text);
-    font-weight: var(--font-weight);
-  }
+img:hover {
+  background: var(--image-hover);
+}
 
-  .end {
-    background-image: url('../assets/earth.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.9;
-    background-color: var(--object-background);
+#manta-energy {
+  color: var(--secondary-color);
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-top: 1em 0;
+}
 
-  }
-  
-  .grid div.manta-ray {
-    background-image: url('../assets/manta-ray.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    background-color: var(--object-background);
-  }
- 
+.grid-wrapper {
+  height: 80vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-self: center;
+}
 
-  .grid div.planet-one {
-    background-image: url('../assets/planet-1.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 700ms ease-in-out;
-    -moz-transition: opacity 700ms ease-in-out;
-    transition: opacity 700ms ease-in-out;
-    background-color: var(--object-background);
-  }
-  
-  .grid div.planet-two {
-    background-image: url('../assets/planet-2.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 900ms ease-in;
-    -moz-transition: opacity 900ms ease-in;
-    transition: opacity 900ms ease-in;
-    background-color: var(--object-background);
-  }
+.grid {
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  height: 600px;
+  width: 600px;
+  align-self: center;
+}
 
-  .grid div.planet-three {
-    background-image: url('../assets/planet-3.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 1000ms ease;
-    -moz-transition: opacity 1000ms ease;
-    transition: opacity 1000ms ease;
-    background-color: var(--object-background);
-  }
+.grid div {
+  border: var(--grid-div-border);
+  height: 5%;
+  width: 5%;
+  text-align: center;
+  color: var(--end-game-text);
+  font-weight: var(--font-weight);
+}
 
-  .grid div.planet-four {
-    background-image: url('../assets/meteor.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 100%;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 1000ms ease;
-    -moz-transition: opacity 1000ms ease;
-    transition: opacity 1000ms ease;
-    background-color: var(--object-background);
-    rotate: -45deg;
-  }
+.intro {
+  display: flex;
+  color: white;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+}
 
-  .grid div.planet-five {
-    background-image: url('../assets/purple-galaxy.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 1000ms ease;
-    -moz-transition: opacity 1000ms ease;
-    transition: opacity 1000ms ease;
-    background-color: var(--object-background);
-  }
+.end {
+  background-image: url("../assets/earth.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+  background-color: var(--object-background);
+}
 
-  .grid div.planet-six {
-    background-image: url('../assets/planet-4.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 1000ms ease;
-    -moz-transition: opacity 1000ms ease;
-    transition: opacity 1000ms ease;
-    background-color: var(--object-background);
-  }
+.grid div.manta-ray {
+  background-image: url("../assets/manta-ray.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  background-color: var(--object-background);
+}
 
-  .grid div.planet-seven {
-    background-image: url('../assets/mercury.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    opacity: var(--object-opacity);
-    -webkit-transition: opacity 1000ms ease;
-    -moz-transition: opacity 1000ms ease;
-    transition: opacity 1000ms ease;
-    background-color: var(--object-background);
-  }
+.grid div.planet-one {
+  background-image: url("../assets/planet-1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 700ms ease-in;
+  -moz-transition: opacity 700ms ease-in;
+  transition: opacity 700ms ease-in;
+  background-color: var(--object-background);
+}
 
-  .wall {
-    background-color: var(--wall-background);
-    border: none;
-  }
+.grid div.planet-two {
+  background-image: url("../assets/planet-2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 900ms ease-in;
+  -moz-transition: opacity 900ms ease-in;
+  transition: opacity 900ms ease-in;
+  background-color: var(--object-background);
+}
 
-  .end-game {
-    background-color: var(--end-game-background);
-    border: none;
-  }
+.grid div.planet-three {
+  background-image: url("../assets/planet-3.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 1000ms ease;
+  -moz-transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease;
+  background-color: var(--object-background);
+}
 
-  .grid div#manta-ray-up {
-    background-image: url('../assets/manta-ray.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: none;
-    rotate: 0deg;
-    background-color: var(--object-background);
-  }
+.grid div.planet-four {
+  background-image: url("../assets/meteor.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 100%;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 1000ms ease;
+  -moz-transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease;
+  background-color: var(--object-background);
+  rotate: -45deg;
+}
 
-  .grid div#manta-ray-left {
-    background-image: url('../assets/manta-ray.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: none;
-    rotate: -90deg;
-    background-color: var(--object-background);
-  }
+.grid div.planet-five {
+  background-image: url("../assets/purple-galaxy.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 1000ms ease;
+  -moz-transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease;
+  background-color: var(--object-background);
+}
 
-  .grid div#manta-ray-down {
-    background-image: url('../assets/manta-ray.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: none;
-    transform: rotate(180deg);
-    background-color: var(--object-background);
-  }
+.grid div.planet-six {
+  background-image: url("../assets/planet-4.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 1000ms ease;
+  -moz-transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease;
+  background-color: var(--object-background);
+}
 
-  .grid div#manta-ray-right {
-    background-image: url('../assets/manta-ray.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: none;
-    rotate: 90deg;
-    background-color: var(--object-background);
-  }
+.grid div.planet-seven {
+  background-image: url("../assets/mercury.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: var(--object-opacity);
+  -webkit-transition: opacity 1000ms ease;
+  -moz-transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease;
+  background-color: var(--object-background);
+}
 
-  
+.wall {
+  background-color: var(--wall-background);
+  border: none;
+}
 
+.end-game {
+  background-color: var(--end-game-background);
+  border: none;
+}
 
+.grid div#manta-ray-up {
+  background-image: url("../assets/manta-ray.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: none;
+  rotate: 0deg;
+  background-color: var(--object-background);
+}
 
+.grid div#manta-ray-left {
+  background-image: url("../assets/manta-ray.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: none;
+  rotate: -90deg;
+  background-color: var(--object-background);
+}
 
+.grid div#manta-ray-down {
+  background-image: url("../assets/manta-ray.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: none;
+  transform: rotate(180deg);
+  background-color: var(--object-background);
+}
+
+.grid div#manta-ray-right {
+  background-image: url("../assets/manta-ray.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: none;
+  rotate: 90deg;
+  background-color: var(--object-background);
+}
