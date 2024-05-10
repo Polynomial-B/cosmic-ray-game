@@ -22,7 +22,7 @@ function createGrid() {
     cells.push(cell);
     grid.appendChild(cell);
 
-    // ? Check cell index ----------------------------------
+    // ? Check cell index ---------------------------------------------------
     // cell.setAttribute('data-index', i)
     // cell.innerText = i
   }
