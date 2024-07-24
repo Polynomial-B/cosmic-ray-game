@@ -409,6 +409,8 @@ function gameWin() {
   });
 }
 
+
+
 // CHECK WIN
 function checkWin() {
   if (mantaIndex === 9 || mantaIndex === 10) {
@@ -502,3 +504,4 @@ toggleMusic.addEventListener("click", () => {
       backingMusic.pause();
   }
 });
+
