@@ -1,18 +1,88 @@
-# COSMIC RAY
+# General Assembly Project 1: Cosmic Ray
 
-A simple game where you have to avoid obstacles and reach the destination at the top of the grid. The player's character, the manta ray, is controllable using the WASD keys. The game can then be reset by using the middle button at the top of the screen (the looping arrow button).
+## Brief
 
-I wanted to create a game that didn't focus on violence or death, as most game endings seem to be about dying. In this game, you play as Ray who is travelling through space. In the loss scenario, she is resting rather than dead.
+### Project Members:
+* Matt Lamb
 
-I particularly enjoyed implementing the 'hidden game', which isn't so much as a game but allows the player to move over the 'game over' screen and paint the grid squares once either a 'win' or 'loss' has occured.
+### Timeframe:
+* 7 Days
 
-## Languages Used
+### Goal:
+Create a static Single Page App game with a win/loss scenario.
+
+## Cosmic Ray:
+
+### Deployed Project Link:
+
+[Click here to visit Cosmic Ray](https://polynomial-b.github.io/cosmic-ray-game/).
+
+Cosmic Ray is a game where you attempt to avoid obstacles and reach the earth-like twin planets using the WASD keys.
+
+I wanted to create a game that didn't focus on violence or death, as an endgame scenario; the loss scenario for the game is described as the character resting on a hospitable planet.
+
+
+## Accreditations
+
+All images from https://www.freepik.com/
+
+The song used as the soundtrack is 'Diving Faces (Club Mix)' by 'Liquid Child' from 'Diving Faces'. Published by Reef Recordings (2007).
+
+The moving sound was created by me.
+
+## Technologies and Dependencies
 
 HTML
-
 CSS
-
 Javascript
+
+## Approach, Planning & Building
+
+I wireframed the app using Excalidraw (see 'Game Plan', below) and built a basic prototype of the game movement within a grid, using JavaScript, HTML and basic CSS.
+
+I then created a logic flowchart using Obsidian (see 'Logic Diagram', below) to determine the game states and to give me an idea of the logic and scenarios needed.
+
+The border check was implemented in the 'movement' stage, so upon a WASD keypress there is a check to make sure that the square that Ray is attempting to move into does not have the class of 'wall'.
+
+The collision logic was implemented both in the movement stage, like with the border check, but was also applied to the moving obstacles, in the event of the character failing to move out of a particular square and an obstacle moving into that same square. This would then determine the 'loss' scenario of the game. 
+
+Finally, the 'win' scenario could be checked if Ray's position matched that of the earth-like twin planets. This wasn't done using classes because the grid is a set width, therefore I could simplify and use the following code:
+
+```
+function checkWin() {
+  if (mantaIndex === 9 || mantaIndex === 10) {
+    gameWin();
+  }
+}
+```
+
+#### Referencing the Grid
+
+These two lines of code below, which are included in the grid set up, are for the purpose of counting each div within the grid:
+
+```
+    // cell.setAttribute('data-index', i)
+    // cell.innerText = i
+```
+
+This made it easier for me to check which grid squares I was working with without having to count each individual grid square.
+
+
+## Wins, Challenges and Bugs
+
+### Wins
+
+I was most proud of the end game screen, including the hidden mini-game.
+
+I wanted a nostalgic 'old-school' video game feel, which I (hopefully!) achieved through embedding the 'Game Over' scenarios (win/loss) into the game grid.
+
+The most fun I had doing was creating the hidden feature which triggers after a win scenario is achieved or all energy is spent. For the user the win/loss text renders inside the grid and the user can continue to move Ray across the screen, 'painting' the squares.
+
+### Bugs
+
+The sound sometimes doesn't render correctly, which I think may be due to the game lacking any `async` functions.
+
+Another oversight is that, if you lose the game, in the end game 'painting' mode you can make your way to the top of the screen, without the in-game obstacles, and you can trigger the win scenario by landing on the middle two squares at the top of the grid (where the earth-like planets would otherwise render). 
 
 
 ## Screenshots
@@ -26,12 +96,11 @@ Additional features include a 'high contrast' mode and a soundtrack.
 ![](./readme-assets/cosmic-ray-screenshot-high-contrast.png)
 
 
+'Painting' in the Win Scenario
 
-Or copying the link here [https://polynomial-b.github.io/cosmic-ray-game/](https://polynomial-b.github.io/cosmic-ray-game/)
+![](./readme-assets/cosmic-ray-win-scenario.png)
 
 
-
-### Planning
 
 #### Game Plan
 
@@ -40,18 +109,6 @@ Or copying the link here [https://polynomial-b.github.io/cosmic-ray-game/](https
 #### Logic Diagram
 
 ![](readme-assets/game-plan-logic-screenshot.png)
-
-
-
-
-
-## Asset Sources
-
-I have used all image sources from https://www.freepik.com/
-
-The song used as the soundtrack is 'Diving Faces (Club Mix)' by 'Liquid Child' from 'Diving Faces'. Published by Reef Recordings (2007).
-
-
 
 
 
@@ -64,8 +121,6 @@ Game over / game win animations and sounds to be added.
 'Less flashing mode' - less flashing, slower moving objects -- for accessibility.
 
 Addition of my own music to replace current soundtrack.
-
-
 
 
 
@@ -90,14 +145,6 @@ function createGrid() {
   }
 }
 ```
-
-These two lines of code below, which are included in the grid set up (above) are for the purpose of counting each div within the grid:
-
-```
-    // cell.setAttribute('data-index', i)
-    // cell.innerText = i
-```
-
 
 
 ### Border creation
@@ -132,21 +179,3 @@ function createWall() {
 ```
 
 
-
-
-## Ray would like to say...
-
-```
-
-           /\
-         ///\\\     
-       ///0/\0\\\
-    ////////\\\\\\\\
-        \\\\////
-           ||
-           ||
-           /
-
-Thanks for reading and playing!
-
-```
