@@ -104,27 +104,27 @@ Additional features include a 'high contrast' mode and a soundtrack.
 
 ![](./readme-assets/cosmic-ray-win-scenario.png)
 
-#### Game Plan
+### Game Plan
 
 ![](readme-assets/game-plan-screenshot.png)
 
-#### Logic Diagram
+### Logic Diagram
 
 ![](readme-assets/game-plan-logic-screenshot.png)
 
 ## Improvements for the future:
 
-Accessibility:
+### Accessibility:
 
 -   Sound cues for Game Over and obstacle interaction scenarios
 -   Reduced flashing / motion mode
 -   Difficulty adjustment (speed/number of obstacles)
 
-Design Improvements:
+### Design Improvements:
 
 -   Addition of my own music to replace the current soundtrack.
 
-Refactoring:
+### Refactoring:
 Code refactoring is something that I would like to do. The moving planet functions are all separate, but should be combined into a single function to be called for each of the 6 sets of obstacles.
 
 The following could be implemented using:
