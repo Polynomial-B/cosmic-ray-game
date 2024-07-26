@@ -30,7 +30,7 @@ All images from https://www.freepik.com/
 
 The song used as the soundtrack is 'Diving Faces (Club Mix)' by 'Liquid Child' from 'Diving Faces'. Published by Reef Recordings (2007).
 
-The moving sound was created by me.
+The sound upon Ray's movement, the distorted bass sound, was created by me.
 
 ## Technologies and Dependencies
 
@@ -125,6 +125,7 @@ Additional features include a 'high contrast' mode and a soundtrack.
 -   Addition of my own music to replace the current soundtrack.
 
 ### Refactoring:
+
 Code refactoring is something that I would like to do. The moving planet functions are all separate, but should be combined into a single function to be called for each of the 6 sets of obstacles.
 
 The following could be implemented using:
